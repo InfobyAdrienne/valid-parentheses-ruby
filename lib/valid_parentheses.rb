@@ -1,21 +1,12 @@
-def valid_parentheses(string)
-  pairs = { '(' => ')' }
+def valid_parentheses(str)
+  stack = []
 
-  string.chars.each_with_object([]) do |bracket, stack|
-    if pairs.keys.include?(bracket)
-      stack << bracket
-    elsif pairs.values.include?(bracket)
-      return false unless pairs[stack.pop] == bracket
-    else
-      return false
-    end
+  symbols = { '(' => ')' }
+
+  str.each_char do |c|
+    stack << c if symbols.key?(c)
+    return false if symbols.key(c) && symbols.key(c) != stack.pop
   end
-    true
   
-  # if string.empty?
-  #   true 
-  # elsif string.include? 
-  #   true 
-  # else false
-  # end 
+    stack.empty?
 end
